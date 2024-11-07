@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Esempio di calcolatrice</title>
+</head>
+<body>
+
+<h2><b>CALCOLATRICE (CON SWITCH)</b></h2>
+<input type="text" id="primo-n" placeholder="Primo Numero"><br>
+<input type="text" id="sec-n" placeholder="Secondo Numero"><br>
+
+<input type="radio" id="somma" name="calc" value="Somma">
+<label for="somma">Somma</label><br>
+<input type="radio" id="sottrazione" name="calc" value="Sottrazione">
+<label for="sottrazione">Sottrazione</label><br>
+<input type="radio" id="moltiplicazione" name="calc" value="Moltiplicazione">
+<label for="moltiplicazione">Moltiplicazione</label><br>
+<input type="radio" id="divisione" name="calc" value="Divisione">
+<label for="divisione">Divisione</label><br>
+
+<input type="button" id="ris" value="CONFERMA" onclick="mycalc()">
+
+<p>Risultato: <span id="output"></span></p> 
+
+<script>
+function mycalc() {
+    var somma = document.getElementById("somma");
+    var sott = document.getElementById("sottrazione");
+    var molt = document.getElementById("moltiplicazione");
+    var divi = document.getElementById("divisione");
+
+    var p = parseFloat(document.getElementById("primo-n").value);
+    var s = parseFloat(document.getElementById("sec-n").value);
+    let risultato = 0;
+
+    if (somma.checked) {
+        risultato = p + s;
+    } else if (sott.checked) {
+        risultato = p - s;
+    } else if (molt.checked) {
+        risultato = p * s;
+    } else if (divi.checked) {
+        if (s === 0) {
+            risultato = "Errore: divisione per zero";
+        } else {
+            risultato = p / s;
+        }
+    } else {
+        risultato = "Seleziona un'operazione";
+    }
+
+    document.getElementById("output").innerHTML = risultato;  
+}
+</script>
+
+</body>
+</html>

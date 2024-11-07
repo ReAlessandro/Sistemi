@@ -1,0 +1,53 @@
+<html>
+<head>
+<title> Esempio di calcolatrice </title>
+
+<body>
+<h2><b>CALCOLATRICE (elaborazioni effettuate dall'interprete javascript presente nel browser)</b></h2>
+
+<script >
+  function addizione() {  
+  let a = parseFloat(document.getElementById("num1").value);    // lettura del dato dalla prima casella di testo e parsing in reale
+  let b = parseFloat(document.getElementById("num2").value);    // lettura del dato dalla seconda casella di testo e parsing in reale
+  let c = a+b;
+  document.getElementById("riss").innerHTML  =   c  ; // inserimento del risultato nel contenuto della cella  identificato con ris
+
+}
+function moltiplicazione(){
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    let m = a*b;
+    document.getElementById("riss").innerHTML  =   m  ;
+}
+function sottrazione(){
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    let s = a-b;
+    document.getElementById("riss").innerHTML  =   s  ;
+       
+}
+function divisione(){
+    let a = parseFloat(document.getElementById("num1").value);
+    let b = parseFloat(document.getElementById("num2").value);
+    if (b === 0){
+        alert("NON si può eseguire questa operazione! Il denominatore non può essere minore o uguale a zero")
+    }
+    else{
+        let d = a/b;
+        document.getElementById("riss").innerHTML  =   d  ;
+    }
+}
+</script>
+
+<table>
+<tr> <td> operando 1 : </td> <td> <input type="text" id="num1" size="13"> </td> </tr>
+<tr> <td> operando 2 :</td> <td> <input type="text" id="num2" size="13"> </td> </tr>
+<tr> <td> risultato  :</td>  <td id="riss">  </td> </tr>
+</table>
+
+<p>  <input type="button" value="SOMMA" onClick="addizione();">
+<p>  <input type="button" value="MOLTIPLICAZIONE" onClick="moltiplicazione();">
+<p>  <input type="button" value="SOTTRAZIONE" onClick="sottrazione();">
+<p>  <input type="button" value="DIVISIONE" onClick="divisione();">
+
+</html>
