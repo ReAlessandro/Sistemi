@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<style>
+    #valore{
+      height: 40px;
+      width: 75px;
+      background-color: rgb(0, 153, 255);
+      border-radius: 8px;
+    }
+    #calc{
+        height: 40px;
+        width: 300px;
+        border: 2px solid;
+        background-color: rgb(0, 248, 165);
+
+    }
+   
+</style>
+<body>
+<table>
+<p id="calc"></p>
+<tr>
+     <td> <input type="button" id="valore" onClick="scrivi('1')"></td>
+     <td> <input type="button" id="valore" onClick="scrivi('2')"></td> 
+     <td> <input type="button" id="valore" onClick="scrivi('3')"></td>
+     <td> <input type="button" id="valore" onClick="scrivi('+')"></td>
+</tr><br>
+<tr>
+    <td> <input type="button" id="valore" onClick="scrivi('4')"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('5')"></td> 
+    <td> <input type="button" id="valore" onClick="scrivi('6')"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('-')"></td>
+</tr><br>
+<tr>
+    <td> <input type="button" id="valore" onClick="scrivi('7')"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('8')"></td> 
+    <td> <input type="button" id="valore" onClick="scrivi('9')"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('/')"></td>
+</tr><br>
+<tr>
+    <td> <input type="button" id="valore" onClick="scrivi('0')"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('')"></td> 
+    <td> <input type="button" id="valore" onClick="operazione()"></td>
+    <td> <input type="button" id="valore" onClick="scrivi('*')"></td>
+</tr><br>
+</table>
+<script>
+    const arr =["","",""];
+    let i=0;
+        function scrivi(p){
+            if(arr[0]==''){
+                document.getElementById("calc").innerHTML  = ' ' ;
+                i=0;}
+            if(p==('c')){
+                document.getElementById("calc").innerHTML  = ' ' ;
+                arr[0]='';
+                arr[1]='';
+                arr[2]='';
+                i=0;
+            }
+            else{
+                document.getElementById("calc").innerHTML  += p ;
+        
+            if(p == '+' || p == '-' || p == '/' || p == '*'){
+                arr[1]+=p;
+                i+=2;}
+            else{
+                arr[i]+=p;}
+            }
+        }
+        function operazione(p){
+        let risultato;
+        switch(arr[1]) {
+              case '+':
+                    risultato = parseFloat(arr[0])+ parseFloat(arr[2]);
+                       break;
+              case '-':
+                    risultato = parseFloat(arr[0])- parseFloat(arr[2]);
+                    break;
+              case '*':
+                    risultato = parseFloat(arr[0])* parseFloat(arr[2]);
+                    break;
+              case '/':
+                    risultato = parseFloat(arr[0])/ parseFloat(arr[2]);
+                    break;
+              default:
+                    risultato ='error';}
+                    arr[0]='';
+                    arr[1]='';
+                    arr[2]='';
+        document.getElementById("calc").innerHTML  = risultato ;
+        }
+    </script>
+</body>
+<html>
