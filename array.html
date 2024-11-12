@@ -1,0 +1,68 @@
+<html>
+<body>
+<h1>JavaScript Arrays</h1>
+<style>
+    /* Stili per posizionare input e tabella uno di fianco all'altro */
+    #attributi {
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
+    #valore {
+        color: blue;
+
+    }
+</style>
+<div id ="attributi">
+    <div>
+        <input type="text" id="nome" placeholder="Nome"><br>
+        <input type="text" id="cognome" placeholder="Cognome"><br>
+        <input type="text" id="indirizzo" placeholder="Indirizzo"><br>
+        <input type="text" id="città" placeholder="Citta"><br>
+        <input type="button" id="valore" value ="PUSH" onClick="push()"><br>
+
+    </div>
+    <div>
+        <table id="demo1" border="1" width = 900px>
+            <tr>
+                <th>Nome</th>
+                <th>Cognome</th>
+                <th>Indirizzo</th>
+                <th>Città</th>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<script>
+function push(){
+    const nome = document.getElementById("nome").value
+    const cognome = document.getElementById("cognome").value
+    const indirizzo = document.getElementById("indirizzo").value
+    const città = document.getElementById("città").value
+    if(verifica(nome, cognome, città, indirizzo)){
+        const table= document.getElementById("demo1")
+        const riga = table.insertRow()
+
+        riga.innerHTML = `<td>${nome}</td><td>${cognome}</td><td>${indirizzo}</td><td>${città}</td>`
+        document.getElementById("nome").value = '';
+        document.getElementById("cognome").value = '';
+        document.getElementById("indirizzo").value = '';
+        document.getElementById("città").value = '';
+    }
+}
+function verifica(nome, cognome, città, indirizzo){
+    if(nome && cognome && indirizzo && città)
+        return true;
+    else{
+        alert("Per favore, compila tutti i campi.")
+        return false;
+    }
+}
+
+</script>
+
+</body>
+</html>
