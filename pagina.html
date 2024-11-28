@@ -1,39 +1,51 @@
 <html>
-<title>Pagina 2.0</title>
+
 <body>
-    <h1>PAGINA 2.0</h1>
-    <table>
-        <tr>
-            <td>Nome</td>
-            <td id="nome"></td>
-        </tr>
-        <tr>
-            <td>Cognome</td>
-            <td id="cognome"></td>
-        </tr>
-        <tr>
-            <td>Indirizzo</td>
-            <td id="indirizzo"></td>
-        </tr>
-        <tr>
-            <td>Città</td>
-            <td id="Città"></td>
-        </tr>
-    </table>
+    <h1>Pagins 2.0</h1>
+    <style>
+        #attributi {
+            display: flex;
+            gap: 45px;
+            align-items: flex-start;
+        }
+
+        #valore {
+            color: blue;
+
+        }
+    </style>
+    <div id="attributi">
+        <div>
+            <table id="demo1" border="2" width=900px>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                    <th>Città</th>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     <script>
-        function aggiungi() {
+        function push() {
             const nome = localStorage.getItem("nome");
             const cognome = localStorage.getItem("cognome");
             const indirizzo = localStorage.getItem("indirizzo");
             const città = localStorage.getItem("città");
+        
+            if (nome, cognome, città, indirizzo) {
+                const table = document.getElementById("demo1")
+                const riga = table.insertRow();
 
-            document.getElementById("nome").textContent = nome
-            document.getElementById("cognome").textContent = cognome
-            document.getElementById("indirizzo").textContent = indirizzo
-            document.getElementById("città").textContent = città;
+                riga.innerHTML = `<td>${nome}</td><td>${cognome}</td><td>${indirizzo}</td><td>${città}</td>`
+            }
+            else{
+                alert("Per favore, compila tutti i campi.")
+                return false;
+            }
         }
-        aggiungi();
+        push()
     </script>
 
 </body>
