@@ -58,6 +58,10 @@ function salva(){
     const indirizzo = document.getElementById("indirizzo").value
     const città = document.getElementById("città").value;
     localStorage.setItem("nome", nome)
+    localStorage.setItem("cognome", cognome)
+    localStorage.setItem("indirizzo", indirizzo)
+    localStorage.setItem("città", città);
+    
     location.href="pagina.html";
 }
 function verifica(nome, cognome, città, indirizzo){
