@@ -4,7 +4,7 @@
 <style>
     #attributi {
       display: flex;
-      gap: 50px;
+      gap: 45px;
       align-items: flex-start;
     }
     #valore {
@@ -19,7 +19,7 @@
         <input type="text" id="indirizzo" placeholder="Indirizzo"><br>
         <input type="text" id="città" placeholder="Citta"><br>
         <input type="button" id="valore" value ="PUSH" onClick="push()"><br>
-
+        <input type="button" id="valore" value ="salva" onClick="salva()"><br>
     </div>
     <div>
         <table id="demo1" border="2" width = 900px>
@@ -51,6 +51,14 @@ function push(){
         document.getElementById("indirizzo").value = '';
         document.getElementById("città").value = '';
     }
+}
+function salva(){
+    const nome = document.getElementById("nome").value
+    const cognome = document.getElementById("cognome").value
+    const indirizzo = document.getElementById("indirizzo").value
+    const città = document.getElementById("città").value;
+    localStorage.setItem("nome", nome)
+    location.href="pagina.html";
 }
 function verifica(nome, cognome, città, indirizzo){
     if(nome && cognome && indirizzo && città)
