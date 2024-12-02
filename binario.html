@@ -1,58 +1,98 @@
 <html>
+
 <body>
-<h1>Conversione Binaria</h1>
-<style>
-    #bit {
-      display: flex;
-      gap: 45px;
-      align-items: flex-start;
-    }
-    #valore {
-        color: blue;
+    <h1>Conversione Binaria</h1>
+    <style>
+        #bit {
+            display: flex;
+            gap: 65px;
+            align-items: flex-start;
+        }
 
-    }
-</style>
-<div id ="bit">
-    <div>
-        <input type="text" id="numero" placeholder="Numero"><br>
-        <input type="button" id="valore" value ="Converti" onClick="Binario()"><br>
+        #valore {
+            color: blue;
+
+        }
+
+        #td,
+        th {
+            text-align: center;
+            vertical-align: middle;
+            padding: 5px;
+        }
+    </style>
+    <div id="bit">
+        <div>
+            <input type="text" id="numero" placeholder="Numero"><br>
+            <input type="button" id="valore" value="BINARIO" onClick="Binario()"><br>
+            <input type="button" id="valore" value="OTTALE" onClick="Ottale()"><br>
+            <input type="button" id="valore" value="ESADECIMALE" onClick="Esadecimale()"><br>
+            <input type="button" id="valore" value="DECIMALE" onClick="Decimale()"><br>
+        </div>
+        <div>
+            <table id="demo" border="2" width=700px>
+                <tr>
+                    <th>Decimale</th>
+                    <th>Binario</th>
+                    <th>Ottale</th>
+                    <th>Esadecimale</th>
+                </tr>
+            </table>
+        </div>
+
 
     </div>
-    <div>
-        <table id="demo" border="2" width = 700px>
-            <tr>
-                <th>Decimale</th>
-                <th>Binario</th>
-                <th>Ottale</th>
-                <th>Esadecimale</th>
-            </tr>
-        </table>
-    </div>
+
+    <script>
+        function Binario() {
+            const table = document.getElementById("demo")
+            const riga = table.insertRow();
+            const bin = document.getElementById("numero").value
+
+            const decimale = parseInt(bin, 2);
 
 
-</div>
+            const esad = decimale.toString(16).toUpperCase();
+            const ottale = decimale.toString(8);
 
-<script>
-var num =[]
-var x = parseInt (document.getElementById("numero").value)
-var ris = x;
-function Binario(){
-    const table= document.getElementById("demo")
-    const riga = table.insertRow();
-
-    for(let i =0; ris > 0; i++){
-        if(ris % 2 == 0){
-            ris = x/2
-            num.push(0);
+            riga.innerHTML = `<td>${decimale}</td><td>${bin}</td><td>${ottale}</td><td>${esad}</td>`
         }
-        else{
-            parseInt(ris) = x/2
-            num.push(1);
+        function Ottale() {
+            const table = document.getElementById("demo")
+            const riga = table.insertRow();
+            const ott = document.getElementById("numero").value
+
+            const decimale = parseInt(ott, 8);
+            const esad = decimale.toString(16).toUpperCase();
+            const binario = decimale.toString(2);
+
+            riga.innerHTML = `<td>${decimale}</td><td>${binario}</td><td>${ott}</td><td>${esad}</td>`
         }
-    }
-    riga.innerHTML = `<td>${num.value}</td>`
-}
-</script>
+        function Esadecimale() {
+            const table = document.getElementById("demo")
+            const riga = table.insertRow();
+            const esad = document.getElementById("numero").value
+
+            const decimale = parseInt(esad, 16);
+            const ott = decimale.toString(8)
+            const binario = decimale.toString(2);
+
+            riga.innerHTML = `<td>${decimale}</td><td>${binario}</td><td>${ott}</td><td>${esad}</td>`
+        }
+        function Decimale() {
+            const table = document.getElementById("demo")
+            const riga = table.insertRow();
+            const dem = document.getElementById("numero").value
+            const decimale = parseInt(dem, 10);
+
+            const ott = decimale.toString(8);
+            const esad = decimale.toString(16).toUpperCase();
+            const binario = decimale.toString(2);
+
+            riga.innerHTML = `<td>${decimale}</td><td>${binario}</td><td>${ott}</td><td>${esad}</td>`
+        }
+    </script>
 
 </body>
+
 </html>
