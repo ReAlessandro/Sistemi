@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piani di Indirizzamento</title>
     <style>
         .blu {
-            color: blue;
+            color: black;
         }
 
         .rosso {
@@ -89,12 +88,12 @@
                 }
             }
 
-            // Creare la stringa HTML con prefisso blu e host rosso
+            
             let ipBinColorato = 
                 '<span class="blu">' + prefissoBin + '</span>' + 
                 '<span class="rosso">' + hostBin + '</span>';
 
-            // Aggiungere i dati alla tabella
+            
             let tableBody = document.querySelector("#demo tbody");
             let newRow = 
                 '<tr>' + 
