@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piani di Indirizzamento</title>
+    <style>
+        .blu {
+            color: blue;
+        }
+
+        .rosso {
+            color: red;
+        }
+
+        .table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 3px solid rgb(0, 162, 211);
+            width: 700px;
+            text-align: center;
+        }
+
+        .table th,
+        .table td {
+            border: 2px solid rgb(0, 0, 0);
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Piani di Indirizzamento</h1>
+    <p>
+        <input type="text" id="IP" placeholder="Inserire IP (es. 192.168.1.1)">
+    </p>
+    <p>
+        <input type="number" id="prefix" placeholder="Inserire Prefix Length (es. 24)">
+    </p>
+    <button type="button" onclick="Risolvi()">Risolvi</button>
+
+    <table id="demo" class="table">
+        <thead>
+            <tr>
+                <th>Indirizzo in Binario</th>
+                <th>Indirizzo in Decimale</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function Risolvi() {
+            let ip = document.getElementById("IP").value;
+            let prefix = parseInt(document.getElementById("prefix").value);
+
+            // Validare l'input
+            if (!ip || isNaN(prefix) || prefix < 0 || prefix > 32) {
+                alert("Inserire un IP valido e un prefix length tra 0 e 32.");
+                return;
+            }
+
+            let octets = ip.split(".");
+            if (octets.length !== 4 || octets.some(o => isNaN(o) || o < 0 || o > 255)) {
+                alert("Inserire un IP valido (es. 192.168.1.1).");
+                return;
+            }
+
+            // Convertire l'IP in binario
+            let ipBin = "";
+            for (let i = 0; i < octets.length; i++) {
+                let bin = parseInt(octets[i]).toString(2);
+                while (bin.length < 8) {
+                    bin = "0" + bin;
+                }
+                ipBin += bin;
+            }
+
+            // Separare prefisso e host
+            let prefissoBin = "";
+            let hostBin = "";
+            for (let i = 0; i < ipBin.length; i++) {
+                if (i < prefix) {
+                    prefissoBin += ipBin[i];
+                } else {
+                    hostBin += ipBin[i];
+                }
+            }
+
+            // Creare la stringa HTML con prefisso blu e host rosso
+            let ipBinColorato = 
+                '<span class="blu">' + prefissoBin + '</span>' + 
+                '<span class="rosso">' + hostBin + '</span>';
+
+            // Aggiungere i dati alla tabella
+            let tableBody = document.querySelector("#demo tbody");
+            let newRow = 
+                '<tr>' + 
+                    '<td>' + ipBinColorato + '</td>' + 
+                    '<td>' + ip + '</td>' + 
+                '</tr>';
+            tableBody.innerHTML += newRow;
+        }
+    </script>
+</body>
+
+</html>

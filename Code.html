@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Coda (FIFO)</title>
+</head>
+
+<body>
+    <h1>Gestione Coda (FIFO)</h1>
+
+    <h2>Inserisci una persona nella coda:</h2>
+    <form id="form">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+        <br>
+        <label for="eta">Età:</label>
+        <input type="number" id="eta" required>
+        <br>
+        <button type="button" onclick="aggiungiAllaCoda()">Accoda</button>
+    </form>
+
+    <h2>Coda attuale:</h2>
+    <ul id="listaCoda"></ul>
+
+    <h2>Prossima persona:</h2>
+    <p id="turnoCorrente">Nessuno in coda.</p>
+    <button onclick="serviProssimo()">Servi prossimo</button>
+
+    <script>
+        let coda = [];
+
+        function aggiungiAllaCoda() {
+            let nome = document.getElementById("nome").value.trim();
+            let eta = parseInt(document.getElementById("eta").value);
+
+            if (!nome || isNaN(eta) || eta <= 0) {
+                alert("Inserisci un nome valido e un'età maggiore di 0.");
+                return;
+            }
+
+            let persona = { nome: nome, eta: eta };
+            coda.unshift(persona);
+            aggiornaListaCoda();
+            document.getElementById("form").reset();
+        }
+
+        function serviProssimo() {
+            if (coda.length === 0) {
+                document.getElementById("turnoCorrente").textContent = "Nessuno in coda.";
+                alert("La coda è vuota!");
+                return;
+            }
+
+            let prossimo = coda.shift();
+            document.getElementById("turnoCorrente").textContent = 
+                Nome: ${prossimo.nome}, Età: ${prossimo.eta};
+            aggiornaListaCoda();
+        }
+
+        function aggiornaListaCoda() {
+            let listaCoda = document.getElementById("listaCoda");
+            listaCoda.innerHTML = "";
+
+            for (let i = 0; i < coda.length; i++) {
+                let li = document.createElement("li");
+                li.textContent = Nome: ${coda[i].nome}, Età: ${coda[i].eta};
+                listaCoda.appendChild(li);
+            }
+        }
+    </script>
+</body>
+
+</html>
