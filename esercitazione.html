@@ -1,0 +1,60 @@
+<html>
+<body>
+<h1>Esercitazione Tabella</h1>
+<style>
+    #attributi {
+      display: flex;
+      gap: 45px;
+      align-items: flex-start;
+    }
+    #valore {
+        color: blue;
+
+    }
+</style>
+<div id ="attributi">
+    <div>
+        <input type="file" onchange="leggiFile(this)">
+    </div>
+    <div>
+        <table id="demo1" border="2" width = 900px>
+            <tr>
+                <th>Anno</th>
+                <th>N° sbarchi</th>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<script>
+function leggiFile(input){
+    let file = input.files[0] //presa in input del file
+    let lettoreF = new FileReader() //creazione oggetto filereader
+    lettoreF.readAsText(file)
+
+    lettoreF.onload = function(){
+        let contenuto = lettoreF.result; // Contenuto del file letto
+        creaTab(contenuto);
+    }
+}
+var array1 = [];
+function creaTab(stream){
+    
+    let doc = stream.split("\n")
+    for(let x = 1; x < doc.length; x++){
+        let parola = doc[x].split(",");
+        const table= document.getElementById("demo1")
+        const riga = table.insertRow()
+        riga.innerHTML = "<td>" + parola[0] + "</td>" + "<td>" + parola[1] + "</td>";
+
+    }
+
+}
+
+
+</script>
+
+</body>
+</html>
