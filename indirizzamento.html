@@ -61,46 +61,56 @@
                 return;
             }
 
-            let octets = ip.split(".");
-            if (octets.length !== 4 || octets.some(o => isNaN(o) || o < 0 || o > 255)) {
+            let ottetti = ip.split(".");
+            if (ottetti.length !== 4 || ottetti.some(x => isNaN(x) || x < 0 || x > 255)) {
                 alert("Inserire un IP valido (es. 192.168.1.1).");
                 return;
             }
 
             // Convertire l'IP in binario
-            let ipBin = "";
-            for (let i = 0; i < octets.length; i++) {
-                let bin = parseInt(octets[i]).toString(2);
-                while (bin.length < 8) {
-                    bin = "0" + bin;
+            for (let x = ottetti[3]; x < 255; x++) {
+                let ipBinario = "";
+                for (let i = 0; i < ottetti.length; i++) {
+                    let bin = parseInt(ottetti[i]).toString(2);
+                    while (bin.length < 8) {
+                        bin = "0" + bin;
+                    }
+                    ipBinario += bin;
                 }
-                ipBin += bin;
-            }
 
-            // Separare prefisso e host
-            let prefissoBin = "";
-            let hostBin = "";
-            for (let i = 0; i < ipBin.length; i++) {
-                if (i < prefix) {
-                    prefissoBin += ipBin[i];
+                // Separare prefisso e host
+                let prefixBin = "";
+                let hostBin = "";
+                for (let i = 0; i < ipBinario.length; i++) {
+                    if (i < prefix) {
+                        prefixBin += ipBinario[i];
+                    } else {
+                        hostBin += ipBinario[i];
+                    }
+                }
+
+
+                let ipColorato = '<span class= "blu">' + prefixBin + '</span>' + '<span class= "rosso">' + hostBin + '</span>';
+
+
+                let table = document.querySelector("#demo tbody")
+                let ip = ottetti.join(".")
+                let newRow = '<tr>' + '<td>' + ipColorato + '</td>' + '<td>' + ip + '</td>' + '</tr>'
+                table.innerHTML += newRow
+                ottetti = incIP(ottetti);
+
+            }
+        }
+        function incIP(ottetti) {
+            for (let i = ottetti.length - 1; i >= 0; i--) { // Partire dall'ultimo ottetto
+                ottetti[i]++;
+                if (ottetti[i] < 256) {
+                    break; // Se l'ottetto è valido, non serve propagare il carry
                 } else {
-                    hostBin += ipBin[i];
+                    ottetti[i] = 0; // Ripristina l'ottetto a 0 e continua con il prossimo
                 }
             }
-
-            
-            let ipBinColorato = 
-                '<span class="blu">' + prefissoBin + '</span>' + 
-                '<span class="rosso">' + hostBin + '</span>';
-
-            
-            let tableBody = document.querySelector("#demo tbody");
-            let newRow = 
-                '<tr>' + 
-                    '<td>' + ipBinColorato + '</td>' + 
-                    '<td>' + ip + '</td>' + 
-                '</tr>';
-            tableBody.innerHTML += newRow;
+            return ottetti;
         }
     </script>
 </body>
