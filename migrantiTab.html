@@ -1,0 +1,182 @@
+<html>
+<body>
+<h1>Esercitazione Tabella</h1>
+<style>
+    #attributi {
+      display: flex;
+      gap: 45px;
+      align-items: flex-start;
+    }
+    #valore {
+        color: blue;
+
+    }
+    body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        #attributi {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        input[type="file"]:hover {
+            border-color: #4CAF50;
+        }
+        table {
+            border-collapse: collapse;
+            width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 3px solid #f4f4f9;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+</style>
+<div id ="attributi">
+    <div>
+        <input type="file" onchange="leggiFile(this)">
+    </div>
+    <div>
+        <table id="demo1" border="2" width = 900px>
+            <tr>
+                <th>Anno</th>
+                <th>N° sbarchi</th>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<canvas id="mycanvas" width="1450" height="600" style="border:1px solid rgb(82, 82, 82)"></canvas>
+<script>
+const anni = [];
+const sbarchi = [];
+var array1 = [];
+
+const canvas = document.getElementById("mycanvas");
+const ctx = canvas.getContext("2d");
+
+function leggiFile(input){
+    let file = input.files[0] //presa in input del file
+    let lettoreF = new FileReader() //creazione oggetto filereader
+    lettoreF.readAsText(file)
+
+    lettoreF.onload = function(){
+        let contenuto = lettoreF.result; // Contenuto del file letto
+        creaTab(contenuto);
+    }
+}
+
+
+function creaTab(stream){
+    
+    let doc = stream.split("\n")
+    for(let x = 1; x < doc.length; x++){
+        let parola = doc[x].split(",");
+        const table= document.getElementById("demo1")
+        const riga = table.insertRow()
+        riga.innerHTML = "<td>" + parola[0].replaceAll('"',"") + "</td>" + "<td>" + parola[1].replaceAll('"',"") + "</td>";
+        anni.push(parola[0])
+        sbarchi.push(parola[1])
+    }
+}
+
+ctx.moveTo(30,600);
+ctx.lineTo(30,5);
+ctx.stroke();
+
+ctx.moveTo(0,570);
+ctx.lineTo(1445,570);
+ctx.stroke();
+
+let x = 30
+for(let i = 0; i < 25; i++){
+    ctx.moveTo(x,570);
+    ctx.lineTo(x,585);
+    ctx.stroke();
+    x+=60;
+}
+let y = 570
+for(let i = 0; i < 25; i++){
+    ctx.moveTo(30,y);
+    ctx.lineTo(15,y);
+    ctx.stroke();
+    y -= 25;
+}
+
+function drawLineGraph(anni[], sbarchi[]) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(50, 350 - (sbarchi[0] / 1000));
+        
+        for (let i = 1; i < anni.length; i++) {
+            let x = 50 + (i * 20);
+            let y = 350 - (sbarchi[i] / 1000);
+            ctx.lineTo(x, y);
+        }
+        
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+    }
+    
+    drawLineGraph();
+</script>
+<script>
+    const anni = [1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020];
+    const sbarchi = [22343,38134,49999,26817,20143,23719,14331,13635,22939,22016,20455,36951,9573,4406,62692,13267,42925,170100,153842,181436,119369,23370,11471,34154];
+    
+    const canvas = document.getElementById("myChart");
+    const ctx = canvas.getContext("2d");
+    
+    function drawLineGraph() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(50, 350 - (sbarchi[0] / 1000));
+        
+        for (let i = 1; i < anni.length; i++) {
+            let x = 50 + (i * 20);
+            let y = 350 - (sbarchi[i] / 1000);
+            ctx.lineTo(x, y);
+        }
+        
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+    }
+    
+    drawLineGraph();
+</script>
+</body>
+</html>
