@@ -152,6 +152,7 @@ function draw(){
     }
 }
 function grafico() { 
+        ctx.font = "10px serif"
         ctx.moveTo(45, 355);
         let x = 45 
         let y = 355
@@ -160,6 +161,7 @@ function grafico() {
             y = (355 - (sbarchi[i] / 1000));
             ctx.lineTo(x, y);
             ctx.moveTo(x, y)
+            ctx.fillText(sbarchi[i], x, y - 5);
             ctx.stroke();
         }
         ctx.strokeStyle = "blue";
