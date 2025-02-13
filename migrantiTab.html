@@ -80,7 +80,7 @@
 
 </div>
 
-<canvas id="mycanvas" width="1450" height="400" style="border:1px solid rgb(82, 82, 82)"></canvas>
+<canvas id="mycanvas" width="1350" height="400" style="border:1px solid rgb(82, 82, 82)"></canvas>
 <script>
 const anni = [];
 const sbarchi = [];
@@ -115,7 +115,8 @@ function creaTab(stream){
         sbarchi.push(Number(parola[1]))
         console.log(sbarchi)
     }
-    grafico();
+    grafico()
+    draw();
 }
 
 ctx.moveTo(45,canvas.height);
@@ -123,7 +124,7 @@ ctx.lineTo(45,2);
 ctx.stroke();
 
 ctx.moveTo(0,355);
-ctx.lineTo(1445,355);
+ctx.lineTo(canvas.width,355);
 ctx.stroke();
 
 let x = 45
@@ -131,7 +132,7 @@ for(let i = 0; i < 25; i++){
     ctx.moveTo(x,355);
     ctx.lineTo(x,370);
     ctx.stroke();
-    x+=57;
+    x+=54;
 }
 let y = 355
 for(let i = 0; i < 8; i++){
@@ -141,13 +142,21 @@ for(let i = 0; i < 8; i++){
     y -= 48;
 }
 console.log(sbarchi)
-
+function draw(){
+    let x = 99;
+    let y = 370
+    ctx.font = "10px serif"
+    for(let i = 0; i < 24; i++){
+        ctx.fillText(anni[i], x - 12, y + 10);
+        x += 54
+    }
+}
 function grafico() { 
         ctx.moveTo(45, 355);
         let x = 45 
         let y = 355
-        for (let i = 1; i <= anni.length; i++) {
-            x += 57
+        for (let i = 0; i <= anni.length; i++) {
+            x += 54
             y = (355 - (sbarchi[i] / 1000));
             ctx.lineTo(x, y);
             ctx.moveTo(x, y)
