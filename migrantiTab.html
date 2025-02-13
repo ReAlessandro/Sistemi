@@ -80,7 +80,7 @@
 
 </div>
 
-<canvas id="mycanvas" width="1450" height="600" style="border:1px solid rgb(82, 82, 82)"></canvas>
+<canvas id="mycanvas" width="1450" height="400" style="border:1px solid rgb(82, 82, 82)"></canvas>
 <script>
 const anni = [];
 const sbarchi = [];
@@ -99,84 +99,66 @@ function leggiFile(input){
         creaTab(contenuto);
     }
 }
-
-
 function creaTab(stream){
     
     let doc = stream.split("\n")
     for(let x = 1; x < doc.length; x++){
         let parola = doc[x].split(",");
+        for(let i = 0; i < parola.length; i++){
+            parola[i] = parola[i].replaceAll('"',"")
+        }
+        console.log(parola);
         const table= document.getElementById("demo1")
         const riga = table.insertRow()
-        riga.innerHTML = "<td>" + parola[0].replaceAll('"',"") + "</td>" + "<td>" + parola[1].replaceAll('"',"") + "</td>";
-        anni.push(parola[0])
-        sbarchi.push(parola[1])
+        riga.innerHTML = "<td>" + parola[0] + "</td>" + "<td>" + parola[1] + "</td>";
+        anni.push(Number(parola[0]))
+        sbarchi.push(Number(parola[1]))
+        console.log(sbarchi)
     }
+    grafico();
 }
 
-ctx.moveTo(30,600);
-ctx.lineTo(30,5);
+ctx.moveTo(45,canvas.height);
+ctx.lineTo(45,2);
 ctx.stroke();
 
-ctx.moveTo(0,570);
-ctx.lineTo(1445,570);
+ctx.moveTo(0,355);
+ctx.lineTo(1445,355);
 ctx.stroke();
 
-let x = 30
+let x = 45
 for(let i = 0; i < 25; i++){
-    ctx.moveTo(x,570);
-    ctx.lineTo(x,585);
+    ctx.moveTo(x,355);
+    ctx.lineTo(x,370);
     ctx.stroke();
-    x+=60;
+    x+=57;
 }
-let y = 570
-for(let i = 0; i < 25; i++){
-    ctx.moveTo(30,y);
-    ctx.lineTo(15,y);
+let y = 355
+for(let i = 0; i < 8; i++){
+    ctx.moveTo(45,y);
+    ctx.lineTo(30,y);
     ctx.stroke();
-    y -= 25;
+    y -= 48;
 }
+console.log(sbarchi)
 
-function drawLineGraph(anni[], sbarchi[]) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-        ctx.moveTo(50, 350 - (sbarchi[0] / 1000));
-        
-        for (let i = 1; i < anni.length; i++) {
-            let x = 50 + (i * 20);
-            let y = 350 - (sbarchi[i] / 1000);
+function grafico() { 
+        ctx.moveTo(45, 355);
+        let x = 45 
+        let y = 355
+        for (let i = 1; i <= anni.length; i++) {
+            x += 57
+            y = (355 - (sbarchi[i] / 1000));
             ctx.lineTo(x, y);
+            ctx.moveTo(x, y)
+            ctx.stroke();
         }
-        
         ctx.strokeStyle = "blue";
-        ctx.stroke();
-    }
-    
-    drawLineGraph();
-</script>
-<script>
-    const anni = [1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020];
-    const sbarchi = [22343,38134,49999,26817,20143,23719,14331,13635,22939,22016,20455,36951,9573,4406,62692,13267,42925,170100,153842,181436,119369,23370,11471,34154];
-    
-    const canvas = document.getElementById("myChart");
-    const ctx = canvas.getContext("2d");
-    
-    function drawLineGraph() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.beginPath();
-        ctx.moveTo(50, 350 - (sbarchi[0] / 1000));
         
-        for (let i = 1; i < anni.length; i++) {
-            let x = 50 + (i * 20);
-            let y = 350 - (sbarchi[i] / 1000);
-            ctx.lineTo(x, y);
-        }
-        
-        ctx.strokeStyle = "blue";
-        ctx.stroke();
-    }
-    
-    drawLineGraph();
+}
+ 
+
 </script>
+
 </body>
 </html>
