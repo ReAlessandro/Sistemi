@@ -1,0 +1,97 @@
+<html>
+<body>
+
+<style>
+    #attributi {
+      display: flex;
+      gap: 45px;
+      align-items: flex-start;
+    }
+    #valore {
+        color: blue;
+
+    }
+    body {
+    display: flex;
+    justify-content: center;  /* Centra orizzontalmente */
+    align-items: center;      /* Centra verticalmente */
+    height: 100vh;            /* Imposta altezza pari all'intero schermo */
+    margin: 0;
+    background-color: hwb(13 36% 15%); /* Colore di sfondo leggero */
+    font-family: Arial, sans-serif; /* Font più leggibile */
+    font-size: 18px;
+    }
+    button:hover {
+        background: #d6dbdb;
+    }
+    .container {
+    text-align: center;  /* Centra il testo e gli elementi */
+    background: #d6dbdb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(213, 208, 208); /* Ombra leggera per effetto elevato */
+    }
+</style>
+<div id ="attributi">
+    <div>
+        <h2>Uso del JSON</h2>
+        <br>
+        <br>
+        <br>
+        <label>Nome:<input type="text" id="nome" placeholder="Nome"><br>
+        <br>
+        <label>Cognome:<input type="text" id="cognome" placeholder="Cognome"><br>
+        <br>
+        <label>Indirizzo:<input type="text" id="indirizzo" placeholder="Indirizzo"><br>
+        <br>
+        <label>età:<input type="text" id="età" placeholder="età"><br>
+        <br>
+        <label>Sesso:<input type="text" id="sesso" placeholder="Sesso"><br>
+        <br>
+        <input type="button" id="salva" value ="SALVA" onClick="salva()"><br>
+        <br>
+        <br>
+        <a href="arr_oggetto.html">Vai alla tabella</a>
+    </div>
+</div>
+
+<script> 
+function salva(){
+
+    let obj = {
+        nome: document.getElementById("nome").value,
+        cognome: cognome = document.getElementById("cognome").value,
+        indirizzo: document.getElementById("indirizzo").value,
+        età: document.getElementById("età").value,
+        sesso: document.getElementById("sesso").value};
+
+    const object = JSON.parse(localStorage.getItem("object"));
+
+    let persone;
+if (object) {
+    persone = JSON.parse(object);
+} else {
+    persone = [];
+}
+
+persone.push(obj);
+
+let newobject = JSON.stringify(persone);
+
+localStorage.setItem("persone", newobject);
+
+}
+
+function verifica(nome, cognome, indirizzo, età, sesso){
+    if(nome && cognome && indirizzo && età && sesso)
+        return true;
+    else{
+        alert("Per favore, compila tutti i campi.")
+        return false;
+    }
+}
+
+</script>
+
+</body>
+</html>

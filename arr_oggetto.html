@@ -1,0 +1,121 @@
+<html>
+
+<body>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: hwb(13 36% 15%);
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: hwb(13 36% 15%);
+            color: white;
+        }
+        #attributi {
+            display: flex;
+            gap: 45px;
+            align-items: flex-start;
+        }
+
+    </style>
+    <div class="container">
+        <h2>Dati Anagrafici Registrati</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Indirizzo</th>
+                    <th>Età</th>
+                    <th>Sesso</th>
+                </tr>
+            </thead>
+            <tbody id="tabellaDati">
+                <!-- I dati verranno aggiunti qui tramite JavaScript -->
+            </tbody>
+        </table>
+        <br>
+        <a href="arrayoggetti.html">Torna alla Registrazione</a>
+    </div>
+
+    <script>
+        function back() {
+
+            let persone = JSON.parse(localStorage.getItem("persone")) || []; // fa in modo che il controllo riporti gli ogetti
+
+
+            let tabella = document.getElementById("tabellaDati");
+
+            tabella.innerHTML = "";  // Pulisce la tabella prima di caricare i dati
+            persone.forEach(function(obj) {
+
+            let riga = document.createElement("tr");
+
+            let cella1 = document.createElement("td");
+            cella1.textContent = obj.nome;
+
+            let cella2 = document.createElement("td");
+            cella2.textContent = obj.cognome;
+
+            let cella3 = document.createElement("td");
+            cella3.textContent = obj.indirizzo;
+
+            let cella4 = document.createElement("td");
+            cella4.textContent = obj.età;
+
+            let cella5 = document.createElement("td"); // tresferisce il cont nelle celle
+            cella5.textContent = obj.sesso;
+
+        // Aggiungiamo il contenuto delle celle alla riga
+            riga.appendChild(cella1);
+            riga.appendChild(cella2);
+            riga.appendChild(cella3);
+            riga.appendChild(cella4);
+            riga.appendChild(cella5);
+
+        // Aggiungiamo la riga alla tabella
+            tabella.appendChild(riga);
+            });
+        }
+
+        window.onload = back;
+        
+    </script>
+
+</body>
+
+</html>
