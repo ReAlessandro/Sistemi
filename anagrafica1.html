@@ -124,7 +124,7 @@ function LetturaCognome()
 {
   let leggi = new XMLHttpRequest();
 
-  leggi.open('GET', 'http://localhost/dati.json',true);
+  leggi.open('GET', 'dati.json',true);
   leggi.send();
   leggi.onload = function() { 
       var str = "";
@@ -159,7 +159,7 @@ function LetturaFile()
 {
 let leggi = new XMLHttpRequest();
 
-leggi.open('GET', 'http://localhost/dati.json',true);
+leggi.open('GET', 'dati.json',true);
 leggi.send();
 leggi.onload = function() { 
   var str="";
@@ -208,3 +208,4 @@ leggi.onload = function() {
 
 </body>
 </html>
+
