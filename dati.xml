@@ -16,9 +16,9 @@
         <anni>1923</anni>
     </Studente>
     <Studente>
-        <nognome>Follatello</cognome>
-        <annme>Francesco</nome>
-        <coi>1932</anni>
+        <nome>Francesco</nome>
+        <cognome>Follatello</cognome>
+        <anni>1932</anni>
     </Studente>
     <Studente>
         <nome>Davide</nome>
