@@ -141,19 +141,21 @@
       const studenti = xml.getElementsByTagName("Studente");
       let lettera = document.getElementById("letter").value.toUpperCase();
 
-      // Filtra i cognomi che iniziano con la lettera scelta
+      
       let filtrati = [];
       for (let i = 0; i < studenti.length; i++) {
+        let nome = studenti[i].getElementsByTagName("nome")[0].textContent;
         let cognome = studenti[i].getElementsByTagName("cognome")[0].textContent.toUpperCase();
+        let anno = parseInt(studenti[i].getElementsByTagName("anni")[0].textContent);
         if (cognome.startsWith(lettera)) {
           filtrati.push(cognome);
         }
       }
 
-      // Stampa i risultati
-      let stampa = "<h3>Cognomi che iniziano con '" + lettera + "':</h3>";
+      str;
+      
       if (filtrati.length > 0) {
-        filtrati.forEach(cognome => stampa += cognome + "<br>");
+        filtrati.forEach(cognome => str + "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>";);
       } else {
         stampa += "Nessun risultato.";
       }
@@ -216,6 +218,7 @@
 
 
 </html>
+
 
 
 
