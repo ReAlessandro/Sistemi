@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       margin: 40px;
       background-color: #f9f9f9;
+      font-size: 1.7rem;
     }
 
     h2 {
@@ -124,12 +125,12 @@
   <p id="p6"></p>
   <script>
   function LetturaCognome() {
-    let leggi = new XMLHttpRequest();
-    leggi.open('GET', 'https://realessandro.github.io/Sistemi/dati.xml', true);
-    leggi.send();
+    let leggi2 = new XMLHttpRequest();
+    leggi2.open('GET', 'https://realessandro.github.io/Sistemi/dati.xml', true);
+    leggi2.send();
 
-    leggi.onload = function () {
-      const xml = leggi.responseXML;
+    leggi2.onload = function () {
+      const xml = leggi2.responseXML;
 
       if (!xml) {
         document.getElementById("t2").innerHTML = "Errore nel caricamento del file XML.";
@@ -215,6 +216,7 @@
 
 
 </html>
+
 
 
 
