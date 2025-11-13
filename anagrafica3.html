@@ -137,10 +137,10 @@
         return;
       }
 
-      // Legge tutti i nodi Studente
+      
       const studenti = xml.getElementsByTagName("Studente");
       let lettera = document.getElementById("letter").value.toUpperCase();
-
+      
       
       let filtrati = [];
       for (let i = 0; i < studenti.length; i++) {
@@ -148,7 +148,7 @@
         let cognome = studenti[i].getElementsByTagName("cognome")[0].textContent.toUpperCase();
         let anno = parseInt(studenti[i].getElementsByTagName("anni")[0].textContent);
         if (cognome.startsWith(lettera)) {
-          filtrati.push(cognome);
+          filtrati.push({nome, cognome, anno);
         }
       }
 
@@ -160,7 +160,7 @@
         str += "Nessun risultato.";
       }
 
-      document.getElementById("t2").innerHTML = stampa;
+      document.getElementById("t2").innerHTML = str;
     };
   }
 
@@ -218,6 +218,7 @@
 
 
 </html>
+
 
 
 
