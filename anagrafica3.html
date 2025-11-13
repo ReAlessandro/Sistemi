@@ -144,23 +144,21 @@
       
       let filtrati = [];
       for (let i = 0; i < studenti.length; i++) {
-        let nome = studenti[i].getElementsByTagName("nome")[0].textContent;
         let cognome = studenti[i].getElementsByTagName("cognome")[0].textContent.toUpperCase();
-        let anno = parseInt(studenti[i].getElementsByTagName("anni")[0].textContent);
         if (cognome.startsWith(lettera)) {
-          filtrati.push({nome, cognome, anno});
+          filtrati.push(cognome);
         }
       }
 
-      let str= "";
       
+      let stampa = "<h3>Cognomi che iniziano con '" + lettera + "':</h3>";
       if (filtrati.length > 0) {
-        filtrati.forEach(studente => {str += "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>";} );
+        filtrati.forEach(cognome => stampa += cognome + "<br>");
       } else {
-        str += "Nessun risultato.";
+        stampa += "Nessun risultato.";
       }
 
-      document.getElementById("t2").querySelector("tbody").innerHTML = str;
+      document.getElementById("t2").innerHTML = str;
     };
   }
 
@@ -218,6 +216,7 @@
 
 
 </html>
+
 
 
 
