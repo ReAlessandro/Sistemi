@@ -152,10 +152,10 @@
         }
       }
 
-      str;
+      let str= "";
       
       if (filtrati.length > 0) {
-        filtrati.forEach(cognome => str + "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>";);
+        filtrati.forEach(cognome => str + "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>" );
       } else {
         stampa += "Nessun risultato.";
       }
