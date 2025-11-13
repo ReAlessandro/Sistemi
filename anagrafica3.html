@@ -148,19 +148,19 @@
         let cognome = studenti[i].getElementsByTagName("cognome")[0].textContent.toUpperCase();
         let anno = parseInt(studenti[i].getElementsByTagName("anni")[0].textContent);
         if (cognome.startsWith(lettera)) {
-          filtrati.push({nome, cognome, anno);
+          filtrati.push({nome, cognome, anno});
         }
       }
 
       let str= "";
       
       if (filtrati.length > 0) {
-        filtrati.forEach(cognome => {str += "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>";} );
+        filtrati.forEach(studente => {str += "<tr><td>" + nome + "</td><td>" + cognome + "</td><td>" + anno + "</td><td></tr>";} );
       } else {
         str += "Nessun risultato.";
       }
 
-      document.getElementById("t2").innerHTML = str;
+      document.getElementById("t2").querySelector("tbody").innerHTML = str;
     };
   }
 
@@ -218,6 +218,7 @@
 
 
 </html>
+
 
 
 
